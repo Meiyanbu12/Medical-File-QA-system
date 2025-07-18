@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medical Q&A History</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📜 Your Question History</h1>
+    <ul id="historyList"></ul>
+
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+      <button onclick="clearHistory()">🗑️ Clear All History</button>
+      <button onclick="window.location.href='index.html'">⬅️ Back to Q&A</button>
+    </div>
+  </div>
+
+  <script>
+    // Load history
+    window.onload = () => {
+      fetch("http://localhost:5000/history")
+        .then(res => res.json())
+        .then(data => {
+          const historyList = document.getElementById("historyList");
+          historyList.innerHTML = "";
+
+          if (data.length === 0) {
+            historyList.innerHTML = "<li>No history found.</li>";
+            return;
+          }
+
+          data.forEach(item => {
+            const li = document.createElement("li");
+           li.innerHTML = `
+  <strong>File:</strong> ${item.filename}<br/>
+  <strong>Q:</strong> ${item.question}<br/>
+  <strong>A:</strong> ${item.answer}<br/>
+  <button onclick="deleteHistory('${item._id}')">Delete</button>
+`;
+
+            historyList.appendChild(li);
+          });
+        });
+    };
+
+    // Delete one entry
+    function deleteHistory(id) {
+      fetch(`http://localhost:5000/history/${id}`, { method: "DELETE" })
+        .then(() => location.reload());
+    }
+
+    // Clear all
+    function clearHistory() {
+      if (confirm("Clear entire history?")) {
+        fetch("http://localhost:5000/history", { method: "DELETE" })
+          .then(() => location.reload());
+      }
+    }
+  </script>
+</body>
+</html>

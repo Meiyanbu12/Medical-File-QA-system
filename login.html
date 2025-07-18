@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Medical QA</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <div class="auth-container glass-card fade-in">
+    <h2>🔐 Login</h2>
+    <form id="loginForm">
+      <input type="text" placeholder="Username" name="username" required />
+      <input type="password" placeholder="Password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p class="small-text">Don't have an account? <a href="signup.html">Sign up</a></p>
+    <p id="loginStatus" class="status-msg"></p>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>

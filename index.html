@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medical QA - Gemini</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🩺 Medical File Q&A</h1>
+
+    <!-- File Input -->
+    <input type="file" id="fileInput" multiple />
+    <button onclick="uploadFiles()"> Upload Files</button>
+
+    <p id="uploadStatus"></p>
+    <ul id="uploadedFilesList"></ul>
+    
+
+    <h3> Ask a Question:</h3>
+    <textarea id="questionInput" placeholder="Type your medical question here..."></textarea>
+    <button onclick="askQuestion()">Ask</button>
+
+    <div id="answerBox" class="answer-box"></div>
+
+    <button onclick="window.location.href='history.html'">📜 View History</button>
+    <button onclick="logout()" class="logout-btn">Logout</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
